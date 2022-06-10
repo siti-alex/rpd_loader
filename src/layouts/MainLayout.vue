@@ -40,7 +40,7 @@
           <template v-slot:body="props">
             <q-tr :props="props">
               <q-td auto-width>
-                <q-btn flat @click.stop="download(props.row.id)" label="Скачать"/>
+                <q-btn flat style="width: 100%" @click.stop="download(props.row.id)" label="Скачать"/>
               </q-td>
               <q-td
                 auto-width
@@ -109,7 +109,7 @@ export default defineComponent({
       })
       axios({
         method: 'GET',
-        url: `https://192.168.202.115:8080/program/${id}`,
+        url: `https://rpdloader.lit.bgpu.ru/api/program/${id}`,
         responseType: 'blob'
       }).then(response => {
         console.log(response)
@@ -125,7 +125,7 @@ export default defineComponent({
 
   },
   mounted() {
-    axios.get('https://192.168.202.115:8080/').then(response => {
+    axios.get('https://rpdloader.lit.bgpu.ru/api').then(response => {
       console.log(response)
       this.documents = response.data
     })
@@ -134,3 +134,12 @@ export default defineComponent({
 
 })
 </script>
+<style>
+/*q-td {*/
+/*  word-wrap:break-word;*/
+/*}*/
+.q-table td, .q-table th {
+  /* don't shorten cell contents */
+  white-space: normal !important;
+}
+</style>
